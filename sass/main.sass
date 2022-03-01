@@ -1,0 +1,143 @@
+@import "variables"
+@import "placeholder"
+@import "mixin"
+
+/* rapprentisage regarde doc sur la journée*/
+
+// StepONE
+
+.container
+  width: 100%
+  padding-left: $margeContainer
+  padding-right: $margeContainer
+.container-fluid
+  width: 100%
+
+@each  $key, $value in $breakpoint
+   @media (max-width: $value)
+     @for $i from 1 through 12
+       .col-#{$key}-#{$i}
+         width: ($value / 12) * $i
+         display: inline
+
+.row
+  display: flex
+
+
+// StepTwo
+
+//BUTTON
+.btn
+  display: inline-block
+  text-align: center
+  color: #212529
+  text-decoration: none
+  border: 1px solid transparent
+  padding: 0.375rem 0.75rem
+  font-size: 1rem
+  border-radius: 0.25rem
+
+@each $key , $value in $button_color
+
+    @if $key != link and  $key != warning and  $key != info and $key != light
+      .btn-#{$key}
+       color: #FFF
+       background-color: $value
+       border-color: $value
+    @if  $key == warning or $key == info or $key == light
+      .btn-#{$key}
+       color: #000
+       background-color: $value
+       border-color: $value
+    @if  $key == link
+      .btn-#{$key}
+       color: $value
+       text-decoration: underline
+       font-weight: 400
+
+.btn:disabled
+    pointer-events: none
+    opacity: .65
+.btn-lg
+  padding: .5rem 1rem
+  font-size: 1.25rem
+
+.btn-sm
+  padding: .25rem .5rem
+  font-size: .875rem
+
+
+//IMAGES
+
+.img-responsive
+  width: 100%
+  height: auto
+
+.img-thumbnail
+  padding: 8px
+  border: 1px solid #dee2e6
+  border-radius: .25rem
+  max-width: 200px
+  height: 200px
+
+.img-circle
+  border-radius: 50%
+  max-width: 100%
+  height: auto
+
+.img-rounded
+  border-radius: 30%
+  max-width: 100%
+  height: auto
+
+.img-blur
+  filter: blur(2px)
+
+
+// COLOR TEXT $
+
+@each $key , $value in $text_color
+  .text-#{$key}
+    color: $value
+  .bg-#{$key}
+    background-color: $value
+
+//ALERT
+.alert
+  padding: .75rem 1.25rem
+  margin-bottom: 1rem
+  border-radius: .25rem
+
+@each $key,$value in $alert
+    .alert-#{$key}
+      color: $value
+      background-color: #d4edda
+      border-color: #c3e6cb
+
+// StepThree
+
+//VISIBLE AND HIDDEN
+@each $key , $value in $breakpoint
+  @media (max-width: $value)
+
+    .visible#{$key}
+     visibility: visible
+
+    .hidden-#{$key}
+      visibility: hidden
+
+    .visible-print-#{$key}
+      visibility: visible
+
+    .hidden-print-#{$key}
+      visibility: hidden
+
+// StepFow
+
+//utiliser les col et container :)
+
+// StepFive
+
+// StepSix
+
+// StepSeven
